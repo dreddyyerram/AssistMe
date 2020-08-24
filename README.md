@@ -1,5 +1,4 @@
 # AssistMe
-<<<<<<< HEAD
 
 Mock test portal built using Angular and Firebase
 
@@ -28,6 +27,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-=======
 Mock test portal built using Angular and Firebase
->>>>>>> 8cba25161df87adf3f91a6fd59efa6375ef5037f
