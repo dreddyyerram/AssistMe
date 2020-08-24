@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "assistme-39d97": {
+      "hosting": {
+        "AssistMe": [
+          "assistme-39d97"
+        ]
+      }
+    }
+  }
+}
