@@ -1,0 +1,16 @@
+<div class="box">
+    <h2>Holla! <i> </i></h2><br>
+    <h2><i>exam {{ exam_id }}</i></h2>
+
+
+    <div>
+
+        <div><span style="color:rgb(255, 0, 0);font-style: italic; " *ngIf="errmessage " class="error ">{{ errmessage }}</span></div>
+        <button class="btn btn-success" [routerLink]="'/home/'">Back</button>
+
+        <app-logout></app-logout>
+
+
+
+    </div>
+</div>

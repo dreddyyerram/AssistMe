@@ -1,10 +1,21 @@
 <div class="box">
     <h2>Holla! <i> {{ username }}</i></h2><br>
     <h2><i>Hakuna Matata</i></h2>
-
-
+    <div class="row container-fluid">
+        <ng-container *ngFor="let exam of this.exams;">
+            <div class="column">
+                <button class="btn btn-info" routerLink="/exam/{{exam.id}}">
+                    <span>{{ exam.exam_name }}</span>
+                </button>
+            </div>
+        </ng-container>
+    </div>
     <div>
-        <div><span style="color:rgb(255, 0, 0);font-style: italic;" *ngIf="errmessage" class="error">{{ errmessage }}</span></div>
-        <app-logout></app-logout>
+        <div>
+            <span style="color:rgb(255, 0, 0);font-style: italic; " *ngIf="this.exams==null" class="error">No exams available</span>
+        </div>
+        <app-logout>
+
+        </app-logout>
     </div>
 </div>

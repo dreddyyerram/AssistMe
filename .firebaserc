@@ -7,5 +7,8 @@
         ]
       }
     }
+  },
+  "projects": {
+    "assistme": "assistme-39d97"
   }
 }

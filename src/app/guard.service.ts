@@ -1,17 +1,25 @@
 import { FirebaseService } from './firebase.service';
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot,RouterStateSnapshot} from '@angular/router';
+import { tap, map, take } from 'rxjs/operators';
 
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class Guard implements CanActivate {
     constructor(private router: Router, private authService: FirebaseService) { }
-    canActivate() {
-        if ( this.authService.isAuthenticated() ) {
-            return true;
-        }
-        this.router.navigate(['/login']);
-        return false;
+    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+
+        return this.authService.user.pipe(
+             take(1),
+             map(user => !!user), 
+             tap(loggedIn => {
+               if (!loggedIn) {
+                 console.log('access denied')
+                 this.router.navigate(['/login']);
+               }
+           })
+      )
     }
-}
+  }

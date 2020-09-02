@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-
-
+import { AngularFireDatabase,AngularFireList,AngularFireObject } from '@angular/fire/database';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
   
-  private user: Observable<firebase.User>;
+  user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
-  constructor(private firebaseAuth: AngularFireAuth) {
+  
+  public examsRef:any;
+  
+ 
+
+  constructor(private firebaseAuth: AngularFireAuth, private database: AngularFireDatabase,private fns: AngularFireFunctions) {
+
     this.user = firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
@@ -25,8 +31,10 @@ export class FirebaseService {
         }
       }
     );
+      this.examsRef=database.list('/mockexams');
     
-  }
+
+     }
   
   login(email: string, password: string) {
     return this.firebaseAuth
@@ -39,8 +47,8 @@ export class FirebaseService {
                 return { message : err.message , code:'error'};});
               
     
-    
-  }
+     }
+
 
   logout() {
       this.firebaseAuth.signOut();
@@ -57,6 +65,9 @@ export class FirebaseService {
 
   }
 
+
+
+
   getUsername() {
       if (this.userDetails != null ) {
         var name = this.userDetails.email.split("@");
@@ -71,6 +82,32 @@ export class FirebaseService {
         }
   }
 
+
+  verifypasscode(exam_id,passcode){
+    const callable = this.fns.httpsCallable('verifyExamPasscode');
+    const data={ examid : exam_id, passcode: passcode};
+    return callable(data).toPromise().then((res)=>{
+      return res;
+    }).catch(err => { 
+      return { message : "server error" , code:'error'}});
+    
+    
+  }
+
+
+  
+  // getexams(){
+  //   this.database.list('/mockexams').valueChanges().subscribe((exams) => { 
+      
+  //     this.exams = exams });
+  // }
+  // return this.callable(data).subscribe((res)=>{
+  //   if(res){
+  //     console.log(res);
+  //     return res;
+  //   }
+    
+  // })
   
    
   

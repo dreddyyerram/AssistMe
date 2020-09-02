@@ -3,12 +3,20 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component'
 import { LoginComponent } from './login/login.component';
 import { Guard } from './guard.service';
-
+import { ExamComponent } from './exam/exam.component'
 const routes: Routes = [
   {
     path: 'home',
+    
     canActivate : [ Guard ] ,
     component: HomeComponent,
+    
+  },
+  {
+    path: 'exam/:id',
+    
+    canActivate : [ Guard ] ,
+    component: ExamComponent,
     
   },
   {
