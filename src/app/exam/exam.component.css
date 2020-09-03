@@ -9,6 +9,7 @@
     box-sizing: border-box;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    text-align: center;
 }
 
 .box h2 {
@@ -24,4 +25,22 @@
 
 button {
     margin: 10px;
+}
+
+.box2 {
+    align-content: flex-start;
+    position: absolute;
+    display: flex;
+    width: 70%;
+    height: 70%;
+    background: rgb(0, 0, 0, 0.9);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.box2 h2 {
+    color: #FFF;
+    text-align: center;
 }

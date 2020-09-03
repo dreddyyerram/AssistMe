@@ -4,7 +4,7 @@
     <div class="row container-fluid">
         <ng-container *ngFor="let exam of this.exams;">
             <div class="column">
-                <button class="btn btn-info" routerLink="/exam/{{exam.id}}">
+                <button class="btn btn-info" routerLink="/exam/{{exam.exam_id}}">
                     <span>{{ exam.exam_name }}</span>
                 </button>
             </div>

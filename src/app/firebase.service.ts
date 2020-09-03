@@ -31,7 +31,7 @@ export class FirebaseService {
         }
       }
     );
-      this.examsRef=database.list('/mockexams');
+      this.examsRef=database.list('/Institution-ID/ABCPUcollege');
     
 
      }

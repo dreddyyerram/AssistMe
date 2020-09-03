@@ -11,20 +11,12 @@ import { Router } from '@angular/router';
 export class ExamComponent implements OnInit {
   exam_id : string;
   errmessage : string;
+  passcode : string;
+  questions : any;
   constructor(private authService: FirebaseService, private router: Router,private route: ActivatedRoute) { 
 
-  authService.verifypasscode("jeemoc2","qwertyiop").then((res) => {
-    if (res.code==="success"){
-      console.log(res.message);
-     
-
-    }
-    else{
-      this.errmessage=res.message
-      
-    }
-
-  });
+  
+  
   }
 
   ngOnInit(): void {
@@ -32,5 +24,22 @@ export class ExamComponent implements OnInit {
 
   }
   
+  submit(): void {
+    this.authService.verifypasscode(this.exam_id,this.passcode).then((res) => {
+      if (res.code==="success"){
+        this.questions=res.message;
+
+        console.log(res.message);
+       
+  
+      }
+      else{
+        this.errmessage=res.message
+        
+      }
+  
+    });
+
+  }
 
 }
