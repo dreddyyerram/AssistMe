@@ -17,6 +17,10 @@
                 "function": "verifyExamPasscode"
             },
             {
+                "source": "/assistme-39d97/us-central1/submitAnswers",
+                "function": "submitAnswers"
+            },
+            {
                 "source": "**",
                 "destination": "/index.html"
             }

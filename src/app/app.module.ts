@@ -42,7 +42,8 @@ import { ExamComponent } from './exam/exam.component';
   providers: [
     FirebaseService,
     Guard,
-    { provide: ORIGIN, useValue: 'https://assistme-39d97.web.app' }
+    //{ provide: ORIGIN, useValue: 'https://assistme-39d97.web.app' }
+    { provide: ORIGIN, useValue: 'http://localhost:5001' }
 
   ],
   bootstrap: [AppComponent]

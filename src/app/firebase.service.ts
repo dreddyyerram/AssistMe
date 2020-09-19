@@ -12,13 +12,14 @@ export class FirebaseService {
   
   user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
+  public college:string;
   
   public examsRef:any;
   
  
 
   constructor(private firebaseAuth: AngularFireAuth, private database: AngularFireDatabase,private fns: AngularFireFunctions) {
-
+    this.college = 'ABCPUcollege'
     this.user = firebaseAuth.authState;
     this.user.subscribe(
       (user) => {
@@ -31,7 +32,7 @@ export class FirebaseService {
         }
       }
     );
-      this.examsRef=database.list('/Institution-ID/ABCPUcollege');
+      this.examsRef=database.list('/Institution-ID/'+this.college);
     
 
      }
@@ -86,6 +87,17 @@ export class FirebaseService {
   verifypasscode(exam_id,passcode){
     const callable = this.fns.httpsCallable('verifyExamPasscode');
     const data={ examid : exam_id, passcode: passcode};
+    return callable(data).toPromise().then((res)=>{
+      return res;
+    }).catch(err => { 
+      return { message : "server error" , code:'error'}});
+    
+    
+  }
+
+  submitAnswers(exam_id, answers){
+    const callable = this.fns.httpsCallable('submitAnswers');
+    const data={ examid : exam_id, answers: answers, college_id : this.college};
     return callable(data).toPromise().then((res)=>{
       return res;
     }).catch(err => { 
